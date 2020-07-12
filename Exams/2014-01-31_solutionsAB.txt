@@ -1,0 +1,29 @@
+TEXT A -- PROBLEM 3 
+-------------------
+
+Since the relation has 2.000.000 records stored in 200.000 pages, we infer that 10 tuples fit in one pages. Every tuple has 4 fields, and therefore 40 values fit in one page, which means that 20 data entries fit in one leaf page of the tree index.
+
+Now, 20 is also the maximum number of index entries in every page, and we can assume that 20 is the fan out of the tree. Since every leaf is full at 66% of occupancy, we have 13 data entries in each leaf. This means that we need 2.000.000/13 = 153.846 leaf pages for the tree index.
+
+So, we need log 20 153.846 = 4 accesses to get to a leaf when we search for a value. After that, we have to analyze all the leaves with that value of "cost". Since there are 10.000 different values of length, and we have 2.000.000 records, we know that the average number of records with the same value of "cost" is 200. Since 200/13 = 15, we have to access other 15 leaves in the worst case. Finally, for each of the 200 data entries that we access, we have to access the corresponding record in the file, and therefore we have to consider further 200 accesses. 
+
+The total is:  log 20 153.846 + 15 + 200 = 4 + 15 + 200 = 219
+
+
+Notice that in the above considerations we assumed that the fan out was the maximum number of index entries in every  tree node. Another way to compute the fan-out of the tree is the following: since the maximum number of index entries in every tree node is 20, it follows that the number of index entries in each node is between 10 and 20, and therefore we can assume the average (i.e. 15) as the fan out of the tree. In this case the total number of accesses is: log 15 153.846 + 15 + 200 = 5 + 15 + 200 = 220.
+
+
+
+TEXT B -- PROBLEM 4 
+-------------------
+
+Since the relation has 1.500.000 records stored in 150.000 pages, we infer that 10 tuples fit in one pages. Every tuple has 4 fields, and therefore 40 values fit in one page, which means that 20 data entries fit in one leaf page of the tree index. 
+
+Now, 20 is also the maximum number of index entries in every page, and we can assume that 20 is the fan out of the tree. Since every leaf is full at 66% of occupancy, we have 13 data entries in each leaf. This means that we need 1.500.000/13 = 115.385 leaf pages for the tree index. 
+
+So we need log 20 115.385 = 4 accesses to get to a leaf when we search for a value. After that, we have to analyze all the leaves with that value of "length". Since there are 10.000 different values of length, and we have 1.500.000 records, then the average number of record with the same value of "length" is 150. Since 150/13 = 12, we have to access other 12 leaves in the worst case. Finally, for each of the 150 data entries, we have to access the corresponding record in the file, and therefore we have to consider further 150 accesses. 
+
+The total is:  log 20 115.385 + 12 + 150 = 4 + 12 + 150 = 166
+
+
+Notice that in the above considerations we assumed that the fan out was the maximum number of index entries in every  tree node. Another way to compute the fan-out of the tree is the following: since the maximum number of index entries in every tree node is 20, it follows that the number of index entries in each node is between 10 and 20, and therefore we can assume the average (i.e. 15) as the fan out of the tree. In this case the total number of accesses is: log 15 115.385 + 12 + 150 = 5 + 12 + 150 = 167
